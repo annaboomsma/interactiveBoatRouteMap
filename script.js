@@ -1,4 +1,4 @@
-console.log("hallo");
+console.log("Hey");
 
 // The div that's going to function as a popup
 const popupDiv = document.querySelector(".customPopup");
