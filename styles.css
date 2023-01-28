@@ -12,10 +12,15 @@ body {
   background-color: #bfe3f3;
   width: 279px;
   height: 100vh;
-  padding-top: 5px;
-  position: absolute;
-  top: 0;
-  z-index: 5;
+  position: relative;
+  z-index: 999;
+  box-shadow: 6px 6px 15px 3px rgba(30, 30, 30, 0.21);
+}
+
+.containerFlex {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 h1 {
@@ -24,6 +29,29 @@ h1 {
   font-size: 43px;
   text-align: center;
 }
+
+.sizeButton {
+  position: absolute;
+  left: 100%;
+  transform: translateX(-50%);
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  box-shadow: 6px 0px 10px 3px rgba(30, 30, 30, 0.21);
+  background-color: #f3da5b;
+}
+
+.sizeButton img {
+  height: 25px;
+  position: absolute;
+  margin-left: 2px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+
 #routeList {
   margin-top: 20px;
 }
@@ -85,9 +113,9 @@ h2 {
   margin: auto;
   margin-top: 50vh;
   transform: translateY(-50%);
-  width: 100%;
   height: 100%;
   position: relative;
+  flex-grow: 1;
 }
 
 .customPopup {
@@ -143,8 +171,100 @@ h2 {
 .activityButton {
   height: 50px;
   width: 50px;
-  background-color: red;
   margin: 5px;
   border: none;
   border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.activityButton p {
+  display: none;
+}
+.activityButton:hover p {
+  font-family: "Public Sans", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  display: inline;
+  position: absolute;
+  right: 67px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.activityButton img {
+  height: 30px;
+  width: 30px;
+}
+
+/*BLUE BUTTON*/
+
+.blue {
+  background-color: #294a69;
+}
+
+.blue:hover {
+  background-color: #1e364e;
+}
+
+.blue:hover p {
+  color: #1e364e;
+}
+
+/*ORANGE BUTTON*/
+
+.orange {
+  background-color: #f3a91a;
+}
+
+.orange:hover {
+  background-color: #da9003;
+}
+
+.orange:hover p {
+  color: #da9003;
+}
+
+/*PURPLE BUTTON*/
+
+.purple {
+  background-color: #dc82fa;
+}
+
+.purple:hover {
+  background-color: #a863be;
+}
+
+.purple:hover p {
+  color: #a863be;
+}
+
+/*GREEN BUTTON*/
+
+.green {
+  background-color: #3d915e;
+}
+
+.green:hover {
+  background-color: #2a623f;
+}
+
+.green:hover p {
+  color: #2a623f;
+}
+
+/*RED BUTTON*/
+
+.red {
+  background-color: #cb285c;
+}
+
+.red:hover {
+  background-color: #a1214a;
+}
+
+.red:hover p {
+  color: #a1214a;
 }
