@@ -16,54 +16,66 @@
 
 </head>
 <body>
-  <div id="sidebar">
-    <h1>Routes</h1>
-    <div id="routeList">
-      <div id="routeListItem">
-        <ul id="routeAttributes">
-          <li>
-            <img src="images/clock.png" alt="">
-            5 tot 8 dagen
-          </li>
-          <li>
-            <img src="images/clock.png" alt="">
-            Relaxed
-          </li>
-          <li>
-            <img src="images/clock.png" alt="">
-            Stad
-          </li>
-        </ul>
-        <h2 id="routeTitle">Culinair Friesland</h2>
+  <div class="containerFlex">
+    <div id="sidebar">
+      <h1>Routes</h1>
+      <div id="routeList">
+        <div id="routeListItem">
+          <ul id="routeAttributes">
+            <li>
+              <img src="images/clock.png" alt="">
+              5 tot 8 dagen
+            </li>
+            <li>
+              <img src="images/clock.png" alt="">
+              Relaxed
+            </li>
+            <li>
+              <img src="images/clock.png" alt="">
+              Stad
+            </li>
+          </ul>
+          <h2 id="routeTitle">Culinair Friesland</h2>
+        </div>
+      </div>
+        <button class="sizeButton">
+          <img src="images/arrow.png" alt="">
+        </button>
+    </div>
+
+    <div id="activityButtons">
+      <button class="activityButton blue" >
+        <p>Havens</p>
+        <img src="images/anchor.png" alt="">
+      </button>
+      <button class="activityButton orange">
+        <p>Restaurants</p>
+        <img src="images/foodstore.png" alt="">
+      </button>
+      <button class="activityButton purple">
+        <p>Cultureel</p>
+        <img src="images/cultureel.png" alt="">
+      </button>
+      <button class="activityButton green">
+        <p>Gezin</p>
+        <img src="images/gezin.png" alt="">
+      </button>
+      <button class="activityButton red">
+        <p>Activiteiten</p>
+        <img src="images/activiteiten.png" alt="">
+      </button>
+    </div>
+
+
+    <div id="leaflet">
+      <div class="customPopup hidden">
+        <!-- Placeholder for the custom popup that you're gonna fill with
+        location info once someone clicks on a location marker -->
       </div>
     </div>
+
   </div>
 
-  <div id="activityButtons">
-    <button class="activityButton">
-      <img src="" alt="">
-    </button>
-    <button class="activityButton">
-      <img src="" alt="">
-    </button>
-    <button class="activityButton">
-      <img src="" alt="">
-    </button>
-    <button class="activityButton">
-      <img src="" alt="">
-    </button>
-    <button class="activityButton">
-      <img src="" alt="">
-    </button>
-  </div>
-
-
-  <div id="leaflet">
-    <div class="customPopup hidden">
-      <!-- Placeholder for the custom popup that you're gonna fill with
-      location info once someone clicks on a location marker -->
-    </div>
-  </div>
   <div class="customIcon"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
