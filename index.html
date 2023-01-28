@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactieve vaarkaart</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+
+
+
+
+</head>
+<body>
+  <div id="sidebar">
+    <h1>Routes</h1>
+    <div id="routeList">
+      <div id="routeListItem">
+        <ul id="routeAttributes">
+          <li>
+            <img src="images/clock.png" alt="">
+            5 tot 8 dagen
+          </li>
+          <li>
+            <img src="images/clock.png" alt="">
+            Relaxed
+          </li>
+          <li>
+            <img src="images/clock.png" alt="">
+            Stad
+          </li>
+        </ul>
+        <h2 id="routeTitle">Culinair Friesland</h2>
+      </div>
+    </div>
+  </div>
+
+  <div id="activityButtons">
+    <button class="activityButton">
+      <img src="" alt="">
+    </button>
+    <button class="activityButton">
+      <img src="" alt="">
+    </button>
+    <button class="activityButton">
+      <img src="" alt="">
+    </button>
+    <button class="activityButton">
+      <img src="" alt="">
+    </button>
+    <button class="activityButton">
+      <img src="" alt="">
+    </button>
+  </div>
+
+
+  <div id="leaflet">
+    <div class="customPopup hidden">
+      <!-- Placeholder for the custom popup that you're gonna fill with
+      location info once someone clicks on a location marker -->
+    </div>
+  </div>
+  <div class="customIcon"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
