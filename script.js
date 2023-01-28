@@ -299,30 +299,75 @@ L.polyline(leeuwardenFraneker, { color: "#0041cc" }).addTo(map);
 L.polyline(franekerSneek, { color: "#0041cc" }).addTo(map);
 L.polyline(sneekLunegat, { color: "#0041cc" }).addTo(map);
 
+// Locations
+const locations = [
+  {
+    title: "Varen met Sil",
+    location: [53.31791187972894, 6.169128705034792],
+    popup: {
+      description:
+        "Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.",
+      website: "https://google.com",
+      img: "https://www.rd.com/wp-content/uploads/2021/03/GettyImages-1133605325-scaled-e1617227898456.jpg",
+      facilities: {
+        price: "1,50",
+        toilet: "Aanwezig",
+        shower: "Aanwezig",
+        tel: "06123781294",
+        store: {
+          name: "Jumbo Dokkum",
+          url: "https://jumbo.nl",
+        },
+      },
+    },
+  },
+  {
+    title: "Varing met Karin",
+    location: [53.26791187972894, 6.069128705034792],
+    popup: {
+      description:
+        "Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.",
+      website: "https://google.com",
+      img: "https://www.rd.com/wp-content/uploads/2021/03/GettyImages-1133605325-scaled-e1617227898456.jpg",
+      facilities: {
+        price: "1,50",
+        toilet: "pissen in de bosjes",
+        shower: "Aanwezig",
+        tel: "06123781294",
+        store: {
+          name: "Jumbo Dokkum",
+          url: "https://jumbo.nl",
+        },
+      },
+    },
+  },
+];
+
 // MARKERS
-// Add single point
-L.marker([53.31791187972894, 6.169128705034792], {
-  title: "Varen met Sil",
-  icon: L.divIcon({ className: "customIcon", iconSize: [10, 10] }),
-})
-  .addTo(map)
-  .addEventListener("mouseover", onHover)
-  .addEventListener("mouseout", onMouseOut);
 
-L.marker([53.375395153930675, 6.165498270347497], {
-  title: "Nationaal Park Lauwersmeer",
-  icon: L.divIcon({ className: "customIcon", iconSize: [10, 10] }),
-}).addTo(map);
-
-// Function to handle hover
-function onHover(event) {
-  const locationTitle = event.target.options.title;
-  console.log("Hij hovert en geeft nu info", event);
-  popupDiv.innerText = locationTitle;
-  popupDiv.classList.remove("hidden");
-}
-
-function onMouseOut(event) {
-  console.log("Hij gaat nu weg");
-  popupDiv.classList.add("hidden");
-}
+locations.forEach((location) => {
+  new MyCustomMarker(location.location, {
+    title: location.title,
+  })
+    .addTo(map)
+    .bindPopup(
+      `<h2>${location.title}</h2>
+      <p>${location.popup.description}</p>
+      <a href="${location.popup.website}" target="_blank">Website</a>
+      <img style="width:100%" src="${location.popup.img}" alt="${
+        location.title
+      }" />
+      <h3>Faciliteiten</h3>
+      <div class='facilities'>
+        ${Object.entries(location.popup.facilities)
+          .map(([key, value]) => {
+            return value.url || key === "tel"
+              ? `<a class='${key}' href='${
+                  value.url || value
+                }' target="_blank">${value.name || value}</a>`
+              : `<p class='${key}'>${value}</p>`;
+          })
+          .join("")}
+      </div>`
+    );
+});
