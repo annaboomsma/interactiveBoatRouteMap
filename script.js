@@ -1,4 +1,4 @@
-console.log("hallo")
+console.log("hallo");
 
 // The div that's going to function as a popup
 const popupDiv = document.querySelector(".customPopup");
@@ -12,8 +12,9 @@ const map = L.map("leaflet", {
 // Add the tiles (the actual map-image)
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 16,
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',}).addTo(map);
-
+  attribution:
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map);
 
 // ROUTES
 // Add a line with lat-long points
@@ -165,13 +166,8 @@ var leeuwardenFraneker = [
   [53.19640583832883, 5.7525138631249],
   [53.198930881276226, 5.763566623015953],
   [53.197183976923306, 5.7865269003875195],
-
-
-
-
 ];
 var franekerSneek = [
-
   [53.03282527711927, 5.6672316938337435],
   [53.03439269760838, 5.6649288182047295],
   [53.03387574655602, 5.660260021963],
@@ -236,7 +232,6 @@ var franekerSneek = [
   [53.17012087931038, 5.601477500992328],
   [53.1767748799605, 5.591328768787085],
   [53.17764100530686, 5.588553468130588],
-
 ];
 var sneekLunegat = [
   [53.31778955962282, 6.156431225640618],
@@ -304,56 +299,30 @@ L.polyline(leeuwardenFraneker, { color: "#0041cc" }).addTo(map);
 L.polyline(franekerSneek, { color: "#0041cc" }).addTo(map);
 L.polyline(sneekLunegat, { color: "#0041cc" }).addTo(map);
 
-
-//MARKERS
+// MARKERS
 // Add single point
 L.marker([53.31791187972894, 6.169128705034792], {
   title: "Varen met Sil",
   icon: L.divIcon({ className: "customIcon", iconSize: [10, 10] }),
-
 })
- .addTo(map)
- .addEventListener("mouseover", (event)=> {
-   const locationTitle = event.target.options.title;
-   console.log("Hij hovert en geeft nu info", event);
-   popupDiv.innerText = locationTitle;
-   popupDiv.classList.remove("hidden");
-   })
- .addEventListener("mouseout", (event)=> {
-   console.log("Hij gaat nu weg");
-   popupDiv.style.display = 'none';
-})
- .on("click", onClick);
-
+  .addTo(map)
+  .addEventListener("mouseover", onHover)
+  .addEventListener("mouseout", onMouseOut);
 
 L.marker([53.375395153930675, 6.165498270347497], {
   title: "Nationaal Park Lauwersmeer",
   icon: L.divIcon({ className: "customIcon", iconSize: [10, 10] }),
-})
-  .addTo(map)
-  .on("click", onClick);
+}).addTo(map);
 
-// Function to handle click
-function onClick(e) {
-  console.log("Het click-event met alle data van de locatie:", e);
-  const locationTitle = e.target.options.title;
-
-  // Remove all highlighted markers
-  document.querySelectorAll(".customIcon").forEach((marker) => {
-    marker.classList.remove("active");
-  });
-
-  // Highlight location marker
-  e.target._icon.classList.add("active");
-
-  // Create and add a popup
-  // This is the standard Leaflet popup that is bound to a lat-long location:
-  // const popup = L.popup([53.31791187972894, 6.169128705034792], {
-  //   content: locationTitle,
-  // }).openOn(map);
-
-  // Make a custom popup by targeting our popup div and
-  // filling it with the location info
+// Function to handle hover
+function onHover(event) {
+  const locationTitle = event.target.options.title;
+  console.log("Hij hovert en geeft nu info", event);
   popupDiv.innerText = locationTitle;
   popupDiv.classList.remove("hidden");
+}
+
+function onMouseOut(event) {
+  console.log("Hij gaat nu weg");
+  popupDiv.classList.add("hidden");
 }
