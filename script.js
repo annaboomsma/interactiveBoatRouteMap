@@ -292,12 +292,26 @@ var sneekLunegat = [
   [53.03282527711927, 5.6672316938337435],
 ];
 
-// Add line
-L.polyline(lunegatDokkum, { color: "#0041cc" }).addTo(map);
-L.polyline(dokkumLeeuwarden, { color: "#0041cc" }).addTo(map);
-L.polyline(leeuwardenFraneker, { color: "#0041cc" }).addTo(map);
-L.polyline(franekerSneek, { color: "#0041cc" }).addTo(map);
-L.polyline(sneekLunegat, { color: "#0041cc" }).addTo(map);
+const routes = [
+  lunegatDokkum,
+  dokkumLeeuwarden,
+  leeuwardenFraneker,
+  franekerSneek,
+  sneekLunegat,
+];
+
+// Add lines (loop over routes)
+routes.forEach((route) => {
+  L.polyline(route, { color: "#0041cc" })
+    .on("mouseover", function () {
+      this.openPopup();
+    })
+    .on("mouseout", function () {
+      this.closePopup();
+    })
+    .bindPopup("Duur van de route: ...")
+    .addTo(map);
+});
 
 // Locations
 const locations = [
