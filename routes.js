@@ -22,7 +22,7 @@ const routes = [
         title: "Lunegat - Dokkum",
         descriptionRouteSection: "Als eerste verlaat je de haven van Lunegat en vertrek je naar Dokkum. Dokkum is een oud fries stadje en is het keerpunt van de elfstedentocht. In Dokkum kan je heerlijk dineren bij het restaurant Proef lokaal Dokkum .",
         imgRouteSection: "https://pennypaws.com/wp-content/uploads/2022/06/elena-mozhvilo-UspYqrVBsIo-unsplash-1-scaled.jpg",
-        docks: ['Haven Dokkum'],
+        docks: ['Haven Dokkum', 'Haven Leeuwarden'],
         tips: ['Proeflokaal Dokkum', 'KB Dokkum', 'De Weagh Dokkum'],
         meer: 'https://google.com'
       }]

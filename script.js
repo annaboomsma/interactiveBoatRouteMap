@@ -17,19 +17,6 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 // ROUTES
 // Add lines (loop over routes)
-routes.forEach((route) => {
-  route.subroutes.forEach((subroute) => {
-    L.polyline(subroute.latPoints, { color: "#0041cc" })
-      .on("mouseover", function () {
-        this.openPopup();
-      })
-      .on("mouseout", function () {
-        this.closePopup();
-      })
-      .bindPopup("Duur van de route: ..." + subroute.duration)
-      .addTo(map);
-  });
-});
 
 // MARKERS (loop over locations)
 locations.forEach((location) => {
@@ -90,6 +77,21 @@ function detailPageFunc(event){
   homepage.classList.toggle("hidden");
   detailpage.classList.toggle("hidden");
 
+  routes.forEach((route) => {
+    route.subroutes.forEach((subroute) => {
+      L.polyline(subroute.latPoints, { color: "#0041cc" })
+       .on("mouseover", function () {
+         this.openPopup();
+       })
+       .on("mouseout", function () {
+         this.closePopup();
+       })
+       .bindPopup("Duur van de route: ..." + subroute.duration)
+       .addTo(map);
+    });
+  });
+
+
   const routeTitle = this.querySelector('h2').textContent
 
   const route = routes.find(route => route.name===routeTitle)
@@ -124,12 +126,29 @@ function detailPageFunc(event){
      </ul>
      <p>${section.descriptionRouteSection}</p>
       <img src="${section.imgRouteSection}" alt="" />
-      
-      
+      <div class="docks">
+         <h4>Aanmeren</h4>
+         <ol>
+            ${section.docks.map(dock =>
+            `<li>
+               <a href="">${dock}</a>
+            </li>`
+            ).join('')}
+         </ol>
+      </div>
+      <div class="tips">
+              <h4>Leuk om te doen</h4>
+              <ol>
+               ${section.tips.map(tip =>
+                `<li>
+                  <a href="">${tip}</a>
+                </li>`
+                        ).join('')}
+              </ol>
+              <a href="${section.meer}">Meer...</a>
+            </div>
   `)
-  })
-
-
+  }).join('')
 }
 
 function backToHome(){
@@ -137,6 +156,5 @@ function backToHome(){
   detailpage.classList.toggle("hidden");
 }
 
-//dynamic route detail page
 
 
