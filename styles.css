@@ -14,9 +14,7 @@ body {
   height: 100%;
 }
 
-
-
-#sidebar.size{
+#sidebar.size {
   width: 900px;
   padding: 0 20px;
 }
@@ -28,7 +26,6 @@ body {
   position: relative;
   z-index: 999;
   box-shadow: 6px 6px 15px 3px rgba(30, 30, 30, 0.21);
-
 }
 
 /*STYLING LEAFLET*/
@@ -61,6 +58,9 @@ body {
 .customIcon {
   width: 10px;
   height: 10px;
+  position: absolute;
+  top: 0;
+  z-index: -1;
   background: #ff5c1b;
   border: 1px solid #c53800;
   border-radius: 10px;
@@ -80,7 +80,6 @@ body {
 .facilities p {
   display: block;
 }
-
 
 /*STYLING ACTIVITY BUTTONS*/
 #activityButtons {
@@ -193,8 +192,6 @@ body {
   color: #a1214a;
 }
 
-
-
 /*HOMEPAGE STYLING*/
 h1 {
   color: #294a69;
@@ -203,41 +200,40 @@ h1 {
   text-align: center;
 }
 
-#filterFunction.hidden{
+#filterFunction.hidden {
   display: none;
 }
 
-#filterFunction{
+#filterFunction {
   width: 100%;
   display: flex;
   justify-content: space-between;
   font-family: "Public Sans", sans-serif;
 }
 
-#filterFunction legend{
+#filterFunction legend {
   color: #1e364e;
   padding: 0;
 }
 
-#filterFunction fieldset{
+#filterFunction fieldset {
   border: none;
   padding: 0;
   margin: 0;
-
 }
 
-#filterFunction input{
+#filterFunction input {
   display: inline;
 }
 
-#days{
+#days {
   width: 80px;
   border: none;
   height: 40px;
   border-radius: 8px;
 }
 
-.filterInput.hidden{
+.filterInput.hidden {
   display: none;
   height: 0;
   width: 0;
@@ -245,7 +241,7 @@ h1 {
   padding: 0;
 }
 
-.selectBtn{
+.selectBtn {
   background-color: white;
   display: flex;
   height: 40px;
@@ -266,25 +262,24 @@ h1 {
 }
 
 .filterInput {
-  padding: 10px ;
+  padding: 10px;
   border-radius: 8px;
 }
 
-.filterInput label{
+.filterInput label {
   padding-left: 10px;
 }
 
 .filterInput:hover {
   background-color: #d2e6ef;
-
 }
 
-.selectBtn .btnText{
+.selectBtn .btnText {
   color: gray;
   font-size: 14px;
 }
 
-.dropdownFilter{
+.dropdownFilter {
   display: flex;
   flex-direction: column;
 }
@@ -301,7 +296,6 @@ h1 {
   box-shadow: 6px 0px 10px 3px rgba(30, 30, 30, 0.21);
   background-color: #f3da5b;
 }
-
 
 #routeList {
   margin-top: 20px;
@@ -364,32 +358,32 @@ h1 {
 
 /*DETAIL PAGE STYLING*/
 
-.detailPage{
+.detailPage {
   padding: 10px;
   background-color: white;
 }
-.exitButton{
+.exitButton {
   height: 40px;
   width: 40px;
   border: none;
   border-radius: 8px;
-  background-color: #F3DA5B;
+  background-color: #f3da5b;
   box-shadow: 4px 4px 6px 0px rgba(30, 30, 30, 0.21);
 }
 
-.xStyling{
+.xStyling {
   font-size: 20px;
-  color: #294A69;
+  color: #294a69;
   font-weight: bold;
 }
 
-.detailPage h2{
+.detailPage h2 {
   font-family: "Kaushan Script", cursive;
-  color: #294A69;
+  color: #294a69;
   font-size: 30px;
 }
 
-.routeAttributesDetail{
+.routeAttributesDetail {
   align-self: flex-start;
   color: #294a69;
   font-family: "Public Sans", sans-serif;
@@ -409,25 +403,24 @@ h1 {
   padding-right: 5px;
 }
 
-
-.detailPage p{
+.detailPage p {
   font-family: "Public Sans", sans-serif;
   font-size: 15px;
 }
 
 /*Route section styling*/
 
-.routeSection{
+.routeSection {
   padding-top: 50px;
 }
 
-.routeSectionTitle{
+.routeSectionTitle {
   font-family: "Kaushan Script", cursive;
   font-size: 23px;
   color: #f3da5b;
 }
 
-.routeSection ul{
+.routeSection ul {
   color: #294a69;
   font-family: "Public Sans", sans-serif;
   font-weight: 100;
@@ -441,8 +434,7 @@ h1 {
   font-size: 17px;
 }
 
-.routeSection ol{
+.routeSection ol {
   font-family: "Public Sans", sans-serif;
   font-size: 15px;
 }
-
