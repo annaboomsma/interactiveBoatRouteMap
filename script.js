@@ -19,15 +19,17 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // ROUTES
 // Add lines (loop over routes)
 routes.forEach((route) => {
-  L.polyline(route.latPoints, { color: "#0041cc" })
-    .on("mouseover", function () {
-      this.openPopup();
-    })
-    .on("mouseout", function () {
-      this.closePopup();
-    })
-    .bindPopup("Duur van de route: ..." + route.duration)
-    .addTo(map);
+  route.subroutes.forEach((subroute) => {
+    L.polyline(subroute.latPoints, { color: "#0041cc" })
+      .on("mouseover", function () {
+        this.openPopup();
+      })
+      .on("mouseout", function () {
+        this.closePopup();
+      })
+      .bindPopup("Duur van de route: ..." + subroute.duration)
+      .addTo(map);
+  });
 });
 
 // MARKERS (loop over locations)
