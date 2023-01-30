@@ -159,6 +159,7 @@ const leeuwardenFraneker = {
   ],
 };
 
+
 const franekerSneek = {
   duration: "2.5 uur",
   latPoints: [
