@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -192,7 +193,7 @@ body {
 }
 
 /*HOMEPAGE STYLING*/
-.homepage.hidden{
+.homepage.hidden {
   display: none;
 }
 
@@ -261,7 +262,7 @@ h1 {
   background-color: white;
   border-radius: 8px;
   width: 190px;
-  display: none;
+  display: block;
 }
 
 .filterInput {
@@ -362,16 +363,18 @@ h1 {
 
 /*DETAIL PAGE STYLING*/
 
-.detailpage.hidden{
+.detailpage.hidden {
   display: none;
 }
 
 .detailpage {
   padding: 10px;
   background-color: white;
+  overflow-y: auto;
+  height: 100%;
 }
 
-.detailpage img{
+.detailpage img {
   width: 100%;
   border-radius: 8px;
 }
@@ -383,7 +386,6 @@ h1 {
   background-color: #f3da5b;
   box-shadow: 4px 4px 6px 0 rgba(30, 30, 30, 0.21);
 }
-
 
 .xStyling {
   font-size: 20px;
@@ -409,7 +411,6 @@ h1 {
   font-size: 15px;
   padding: 0;
 }
-
 
 .routeAttributesDetail li {
   margin-top: 5px;
@@ -458,5 +459,3 @@ h1 {
   font-family: "Public Sans", sans-serif;
   font-size: 15px;
 }
-
-
