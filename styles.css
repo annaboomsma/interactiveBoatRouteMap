@@ -258,7 +258,10 @@ h1 {
   background-color: white;
   border-radius: 8px;
   width: 190px;
-  display: none;
+}
+
+.optionsDropdown * {
+  cursor: pointer;
 }
 
 .filterInput {
@@ -359,7 +362,7 @@ h1 {
 
 /*DETAIL PAGE STYLING*/
 
-.detailPage.hidden{
+.detailPage.hidden {
   display: none;
 }
 
@@ -382,8 +385,6 @@ h1 {
   font-weight: bold;
 }
 
-
-
 .detailPage h2 {
   font-family: "Kaushan Script", cursive;
   color: #294a69;
@@ -402,7 +403,6 @@ h1 {
   font-size: 15px;
   padding: 0;
 }
-
 
 .routeAttributesDetail li {
   margin-top: 5px;

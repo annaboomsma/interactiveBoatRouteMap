@@ -1,8 +1,5 @@
 console.log("Hey");
 
-// The div that's going to function as a popup
-const popupDiv = document.querySelector(".customPopup");
-
 // Instantiate the map on the div with id "leaflet"
 const map = L.map("leaflet", {
   center: [53.15, 5.8],
@@ -60,7 +57,7 @@ locations.forEach((location) => {
     );
 });
 
-//sidebar size change
+// Sidebar size change
 const sizeButton = document.getElementById("sizeButton");
 const sidebar = document.getElementById("sidebar");
 const filterBar = document.getElementById("filterFunction");
@@ -69,5 +66,28 @@ sizeButton.addEventListener("click", test);
 function test() {
   sidebar.classList.toggle("size");
   filterBar.classList.toggle("hidden");
-  console.log(sidebar);
+}
+
+// Listen for filter changes
+const currentFilters = {};
+const filterGroups = document.querySelectorAll("#filterFunction fieldset");
+
+for (const filterGroup of filterGroups) {
+  filterGroup.addEventListener("change", handleFilters);
+}
+
+function handleFilters(e) {
+  const filters = [...this.querySelectorAll("input")];
+
+  // A single number input
+  if (filters.length === 1 && filters[0].type === "number") {
+    const value = filters[0].value;
+    currentFilters[this.name] = value;
+  } else {
+    // Checkboxes
+    const activeFilters = filters
+      .filter((filter) => filter.checked)
+      .map((activeFilter) => activeFilter.id);
+    currentFilters[this.name] = activeFilters;
+  }
 }
