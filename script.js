@@ -125,6 +125,7 @@ function detailPageFunc(event){
      <p>${section.descriptionRouteSection}</p>
       <img src="${section.imgRouteSection}" alt="" />
       
+      
   `)
   })
 
