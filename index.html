@@ -15,34 +15,262 @@
       integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
       crossorigin=""
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   </head>
   <body>
     <div class="containerFlex">
       <div id="sidebar">
-        <h1>Routes</h1>
-        <div id="routeList">
-          <div id="routeListItem">
-            <ul id="routeAttributes">
+        <div style="display: none" class="homepage">
+          <h1>Routes</h1>
+          <form id="filterFunction" class="hidden">
+            <fieldset>
+              <legend>Aantal dagen</legend>
+              <label class="hidden" for="days"></label>
+              <input type="number" name="" id="days">
+            </fieldset>
+            <fieldset class="dropdownFilter">
+              <legend>Vakantie stijl</legend>
+              <div class="selectBtn">
+                <p class="btnText">Maak een selectie...</p>
+                <div class="btnArrow">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+              <div class="optionsDropdown">
+                <div class="filterInput">
+                  <input type="checkbox" id="active">
+                  <label for="active">Actief</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="adventure">
+                  <label for="adventure">Avontuur</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="relaxed">
+                  <label for="relaxed">Relaxed</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="family">
+                  <label for="family">Gezin</label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="dropdownFilter">
+              <legend>Vakantie thema</legend>
+              <div class="selectBtn">
+                <p class="btnText">Maak een selectie...</p>
+                <div class="btnArrow">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+
+              <div class="optionsDropdown">
+                <div class="filterInput">
+                  <input type="checkbox" id="cultural">
+                  <label for="cultural">Cultuur</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="food">
+                  <label for="food">Eten in Friesland</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="nature">
+                  <label for="nature">Natuur</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="city">
+                  <label for="city">Stad</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="specialPlaces">
+                  <label for="specialPlaces">Bijzondere plekken</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="kids">
+                  <label for="kids">Kinderen</label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="dropdownFilter">
+              <legend>Steden</legend>
+              <div class="selectBtn">
+                <p class="btnText">Maak een selectie...</p>
+                <div class="btnArrow">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+              <div class="optionsDropdown">
+                <div class="filterInput">
+                  <input type="checkbox" id="bolsward">
+                  <label for="bolsward">Bolsward</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="dokkum">
+                  <label for="dokkum">Dokkum</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="franeker">
+                  <label for="franeker">Franeker</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="harlingen">
+                  <label for="harlingen">Harlingen</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="hindeloopen">
+                  <label for="hindeloopen">Hindeloopen</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="leeuwarden">
+                  <label for="leeuwarden">Leeuwarden</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="sloten">
+                  <label for="sloten">Sloten</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="sneek">
+                  <label for="sneek">Sneek</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="stavoren">
+                  <label for="stavoren">Stavoren</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="workum">
+                  <label for="workum">Workum</label>
+                </div>
+                <div class="filterInput">
+                  <input type="checkbox" id="ijlst">
+                  <label for="ijlst">IJlst</label>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+
+          <div id="routeList">
+            <div class="routeListItem">
+              <ul class="routeAttributes">
+                <li>
+                  <img src="images/clock.png" alt="" />
+                  5 tot 8 dagen
+                </li>
+                <li>
+                  <img src="images/clock.png" alt="" />
+                  Relaxed
+                </li>
+                <li>
+                  <img src="images/clock.png" alt="" />
+                  Stad
+                </li>
+              </ul>
+              <h2 class="routeTitle">Culinair Friesland</h2>
+            </div>
+            <div class="routeListItem">
+              <ul class="routeAttributes">
+                <li>
+                  <img src="images/clock.png" alt="" />
+                  5 tot 8 dagen
+                </li>
+                <li>
+                  <img src="images/clock.png" alt="" />
+                  Relaxed
+                </li>
+                <li>
+                  <img src="images/clock.png" alt="" />
+                  Stad
+                </li>
+              </ul>
+              <h2 class="routeTitle">Culinair Friesland</h2>
+            </div>
+            <div class="routeListItem">
+              <ul class="routeAttributes">
+                <li>
+                  <img src="images/clock.png" alt="" />
+                  5 tot 8 dagen
+                </li>
+                <li>
+                  <img src="images/clock.png" alt="" />
+                  Relaxed
+                </li>
+                <li>
+                  <img src="images/clock.png" alt="" />
+                  Stad
+                </li>
+              </ul>
+              <h2 class="routeTitle">Culinair Friesland</h2>
+            </div>
+          </div>
+          <button id="sizeButton">
+            <i class="fa-regular fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div   class="detailPage">
+          <button class="exitButton">
+            <i class="fa-solid fa-x xStyling"></i>
+          </button>
+
+          <h2>Culinair Friesland</h2>
+          <ul class="routeAttributesDetail">
+            <li>
+              <i class="fa-regular fa-clock"></i>
+              5 tot 8 dagen
+            </li>
+            <li>
+              <i class="fa-solid fa-chart-line"></i>
+              Relaxed
+            </li>
+            <li>
+              <i class="fa-regular fa-eye"></i>
+              Stad
+            </li>
+          </ul>
+          <img src="" alt="">
+          <p>Dit is de route die je meeneemt door culinair Friesland. Je vaart langs alle steden en dorpen met het beste eten. En ziet ondertussen ook de prachtige natuur die Friesland je te bieden heeft.  </p>
+
+          <div class="routeSection">
+            <h3 class="routeSectionTitle">Lunegat - Dokkum</h3>
+            <ul>
               <li>
-                <img src="images/clock.png" alt="" />
-                5 tot 8 dagen
-              </li>
-              <li>
-                <img src="images/clock.png" alt="" />
-                Relaxed
-              </li>
-              <li>
-                <img src="images/clock.png" alt="" />
-                Stad
+                <i class="fa-regular fa-clock"></i>
+                Ongeveer 2 uur
               </li>
             </ul>
-            <h2 id="routeTitle">Culinair Friesland</h2>
+            <p>
+              Als eerste verlaat je de haven van Lunegat en vertrek je naar Dokkum. Dokkum is een oud fries stadje en is het keerpunt van de elfstedentocht. In Dokkum kan je heerlijk dineren bij het restaurant
+              <a href="https://www.proeflokaaldokkum.nl/?gclid=Cj0KCQiA8t2eBhDeARIsAAVEga0IhhFMUFFv35WzaliTi4JgwbS_nZ_lpXuuK4GOn1SAjtEapVhkdDUaAkRQEALw_wcB">Proef lokaal Dokkum</a> .
+            </p>
+            <img src="" alt="">
+            <div class="docks">
+              <h4>Aanmeren</h4>
+              <ol>
+                <li>
+                  <a href="">Haven Dokkum</a>
+                </li>
+              </ol>
+            </div>
+            <div class="tips">
+              <h4>Leuk om te doen</h4>
+              <ol>
+                <li>
+                  <a href="">Haven Dokkum</a>
+                </li>
+                <li>
+                  <a href="">Haven Dokkum</a>
+                </li>
+                <li>
+                  <a href="">Haven Dokkum</a>
+                </li>
+              </ol>
+              <a href="">Meer...</a>
+            </div>
           </div>
+
+
         </div>
-        <button class="sizeButton">
-          <img src="images/arrow.png" alt="" />
-        </button>
       </div>
+
 
       <div id="activityButtons">
         <button class="activityButton blue">

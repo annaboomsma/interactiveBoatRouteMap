@@ -8,104 +8,27 @@ body {
   width: 100vw;
 }
 
-#sidebar {
-  background-color: #bfe3f3;
-  width: 279px;
-  height: 100vh;
-  position: relative;
-  z-index: 999;
-  box-shadow: 6px 6px 15px 3px rgba(30, 30, 30, 0.21);
-}
-
 .containerFlex {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
-h1 {
-  color: #294a69;
-  font-family: "Kaushan Script", cursive;
-  font-size: 43px;
-  text-align: center;
+
+
+#sidebar.size{
+  width: 900px;
+  padding: 0 20px;
 }
 
-.sizeButton {
-  position: absolute;
-  left: 100%;
-  transform: translateX(-50%);
-  top: 50%;
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
-  border: none;
-  box-shadow: 6px 0px 10px 3px rgba(30, 30, 30, 0.21);
-  background-color: #f3da5b;
-}
+#sidebar {
+  background-color: #bfe3f3;
+  width: 320px;
+  height: 100vh;
+  position: relative;
+  z-index: 999;
+  box-shadow: 6px 6px 15px 3px rgba(30, 30, 30, 0.21);
 
-.sizeButton img {
-  height: 25px;
-  position: absolute;
-  margin-left: 2px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 50%;
-}
-
-#routeList {
-  margin-top: 20px;
-}
-
-#routeListItem {
-  display: flex;
-  flex-wrap: wrap;
-  height: 197px;
-  background-color: red;
-  width: 255px;
-  border-radius: 8px;
-  background-image: url("images/Restaurant-it-posthus-makkum-1280x620.jpeg");
-  background-size: cover;
-  background-position: center;
-  margin: auto;
-  justify-content: space-between;
-  box-shadow: 4px 4px 6px 0px rgba(30, 30, 30, 0.21);
-}
-
-h2 {
-  background-color: #294a69;
-  color: white;
-  text-align: center;
-  font-family: "Public Sans", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  padding: 5px 0px;
-  align-self: end;
-  width: 100%;
-  border-radius: 0px 0px 8px 8px;
-}
-
-#routeAttributes {
-  align-self: flex-start;
-  color: white;
-  font-family: "Public Sans", sans-serif;
-  font-weight: 100;
-  list-style: none;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, 0)
-  );
-  width: 100%;
-  height: 100px;
-  padding: 10px;
-  border-radius: 8px 8px 0px 0px;
-}
-
-#routeAttributes img {
-  width: 15px;
-  height: 15px;
-  color: white;
-  padding-right: 5px;
 }
 
 /*STYLING LEAFLET*/
@@ -157,6 +80,7 @@ h2 {
 .facilities p {
   display: block;
 }
+
 
 /*STYLING ACTIVITY BUTTONS*/
 #activityButtons {
@@ -268,3 +192,257 @@ h2 {
 .red:hover p {
   color: #a1214a;
 }
+
+
+
+/*HOMEPAGE STYLING*/
+h1 {
+  color: #294a69;
+  font-family: "Kaushan Script", cursive;
+  font-size: 43px;
+  text-align: center;
+}
+
+#filterFunction.hidden{
+  display: none;
+}
+
+#filterFunction{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Public Sans", sans-serif;
+}
+
+#filterFunction legend{
+  color: #1e364e;
+  padding: 0;
+}
+
+#filterFunction fieldset{
+  border: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+#filterFunction input{
+  display: inline;
+}
+
+#days{
+  width: 80px;
+  border: none;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.filterInput.hidden{
+  display: none;
+  height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.selectBtn{
+  background-color: white;
+  display: flex;
+  height: 40px;
+  align-items: center;
+  border-radius: 8px;
+  padding: 0 10px;
+  width: 190px;
+  justify-content: space-between;
+}
+
+.optionsDropdown {
+  margin: 5px 0;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  width: 190px;
+  display: none;
+}
+
+.filterInput {
+  padding: 10px ;
+  border-radius: 8px;
+}
+
+.filterInput label{
+  padding-left: 10px;
+}
+
+.filterInput:hover {
+  background-color: #d2e6ef;
+
+}
+
+.selectBtn .btnText{
+  color: gray;
+  font-size: 14px;
+}
+
+.dropdownFilter{
+  display: flex;
+  flex-direction: column;
+}
+
+#sizeButton {
+  position: absolute;
+  left: 100%;
+  transform: translateX(-50%);
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  box-shadow: 6px 0px 10px 3px rgba(30, 30, 30, 0.21);
+  background-color: #f3da5b;
+}
+
+
+#routeList {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.routeListItem {
+  display: flex;
+  flex-wrap: wrap;
+  height: 197px;
+  background-color: red;
+  width: 270px;
+  border-radius: 8px;
+  background-image: url("images/Restaurant-it-posthus-makkum-1280x620.jpeg");
+  background-size: cover;
+  background-position: center;
+  justify-content: space-between;
+  margin: 10px 0;
+  box-shadow: 4px 4px 6px 0px rgba(30, 30, 30, 0.21);
+}
+
+.routeTitle {
+  background-color: #294a69;
+  color: white;
+  text-align: center;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 5px 0px;
+  align-self: end;
+  width: 100%;
+  border-radius: 0px 0px 8px 8px;
+}
+
+.routeAttributes {
+  align-self: flex-start;
+  color: white;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 100;
+  list-style: none;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0)
+  );
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.routeAttributes img {
+  width: 15px;
+  height: 15px;
+  color: white;
+  padding-right: 5px;
+}
+
+/*DETAIL PAGE STYLING*/
+
+.detailPage{
+  padding: 10px;
+  background-color: white;
+}
+.exitButton{
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: #F3DA5B;
+  box-shadow: 4px 4px 6px 0px rgba(30, 30, 30, 0.21);
+}
+
+.xStyling{
+  font-size: 20px;
+  color: #294A69;
+  font-weight: bold;
+}
+
+.detailPage h2{
+  font-family: "Kaushan Script", cursive;
+  color: #294A69;
+  font-size: 30px;
+}
+
+.routeAttributesDetail{
+  align-self: flex-start;
+  color: #294a69;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 100;
+  list-style: none;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 8px 8px 0px 0px;
+  font-size: 15px;
+}
+
+.routeAttributesDetail img {
+  width: 15px;
+  height: 15px;
+  color: white;
+  padding-right: 5px;
+}
+
+
+.detailPage p{
+  font-family: "Public Sans", sans-serif;
+  font-size: 15px;
+}
+
+/*Route section styling*/
+
+.routeSection{
+  padding-top: 50px;
+}
+
+.routeSectionTitle{
+  font-family: "Kaushan Script", cursive;
+  font-size: 23px;
+  color: #f3da5b;
+}
+
+.routeSection ul{
+  color: #294a69;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 100;
+  list-style: none;
+  padding: 10px;
+}
+.routeSection h4 {
+  font-family: "Public Sans", sans-serif;
+  font-weight: bold;
+  color: #294a69;
+  font-size: 17px;
+}
+
+.routeSection ol{
+  font-family: "Public Sans", sans-serif;
+  font-size: 15px;
+}
+
