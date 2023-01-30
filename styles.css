@@ -20,6 +20,10 @@ body {
   padding: 0 20px;
 }
 
+#sidebar.size #sizeButton i {
+  transform: rotate(180deg);
+}
+
 #sidebar {
   background-color: #bfe3f3;
   width: 320px;
@@ -300,6 +304,7 @@ h1 {
   border: none;
   box-shadow: 6px 0 10px 3px rgba(30, 30, 30, 0.21);
   background-color: #f3da5b;
+  cursor: pointer;
 }
 
 #routeList {
