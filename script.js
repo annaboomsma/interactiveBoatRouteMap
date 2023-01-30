@@ -1,7 +1,6 @@
 console.log("Hey");
 
-// The div that's going to function as a popup
-const popupDiv = document.querySelector(".customPopup");
+
 
 // Instantiate the map on the div with id "leaflet"
 const map = L.map("leaflet", {
@@ -71,3 +70,72 @@ function test() {
   filterBar.classList.toggle("hidden");
   console.log(sidebar);
 }
+
+//detail pagina toggle
+
+const homepage = document.querySelector(".homepage")
+const detailpage = document.querySelector('.detailpage')
+const routeListItems = document.querySelectorAll('.routeListItem')
+const exitButton = document.querySelector('.exitButton')
+const introRoute = document.querySelector(".introRoute")
+const routeSection = document.querySelector(".routeSection")
+
+
+routeListItems.forEach(item => {
+  item.addEventListener("click", detailPageFunc)
+})
+exitButton.addEventListener("click", backToHome)
+
+function detailPageFunc(event){
+  homepage.classList.toggle("hidden");
+  detailpage.classList.toggle("hidden");
+
+  const routeTitle = this.querySelector('h2').textContent
+
+  const route = routes.find(route => route.name===routeTitle)
+
+  introRoute.innerHTML = (`
+     <h2 class="routeSectionTitle">  ${route.name}</h2>
+     <ul class="routeAttributesDetail">
+              <li>
+                <i class="fa-regular fa-clock"></i>
+                ${route.durationDays[0]} tot ${route.durationDays.at(-1)} dagen
+              </li>
+              <li>
+                <i class="fa-solid fa-chart-line"></i>
+                ${route.style}
+              </li>
+              <li>
+                <i class="fa-regular fa-eye"></i>
+                ${route.theme[0]}
+              </li>
+     </ul>
+     <img src="${route.img}" alt="${route.name}" />        
+     <p>${route.discription}</p> `)
+
+
+    routeSection.innerHTML = route.routeSections.map(section => { return (`
+    <h3 class="routeSectionTitle">${section.title}</h3>
+    <ul>
+     <li>
+     <i class="fa-regular fa-clock"></i>
+      Ongeveer ${section.subroute.duration}
+     </li>
+     </ul>
+     <p>${section.descriptionRouteSection}</p>
+      <img src="${section.imgRouteSection}" alt="" />
+      
+  `)
+  })
+
+
+}
+
+function backToHome(){
+  homepage.classList.toggle("hidden");
+  detailpage.classList.toggle("hidden");
+}
+
+//dynamic route detail page
+
+
