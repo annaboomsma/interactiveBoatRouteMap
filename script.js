@@ -212,7 +212,7 @@ const currentFilters = new Proxy(
     style: [],
     theme: [],
     city: [],
-    days: null,
+    days: 0,
   },
   filterTracker
 );
@@ -245,33 +245,45 @@ const routeCardsContainer = document.querySelector("#routeList");
 const routeCards = [...document.getElementsByClassName("routeListItem")];
 
 function updateMap() {
-  const routesToShow = routes.filter((route) => {
-    const themesOfRoute = Object.keys(route.theme);
-    const routeThemesMatchFilter = themesOfRoute.some((theme) =>
-      currentFilters.theme.includes(theme)
-    );
+  let routesToShow;
 
-    const stylesOfRoute = Object.keys(route.style);
-    const routeStylesMatchFilter = stylesOfRoute.some((style) =>
-      currentFilters.style.includes(style)
-    );
+  if (
+    // If no filters, show all
+    parseInt(currentFilters.days) <= 0 &&
+    Object.values(currentFilters)
+      .filter((f) => Array.isArray(f))
+      .every((filterArray) => filterArray.length === 0)
+  ) {
+    routesToShow = routes;
+  } else {
+    routesToShow = routes.filter((route) => {
+      const themesOfRoute = Object.keys(route.theme);
+      const routeThemesMatchFilter = themesOfRoute.some((theme) =>
+        currentFilters.theme.includes(theme)
+      );
 
-    const citiesOfRoute = route.cities;
-    const routeCitiesMatchFilter = citiesOfRoute.some((city) => {
-      return currentFilters.city.includes(city.toLowerCase());
+      const stylesOfRoute = Object.keys(route.style);
+      const routeStylesMatchFilter = stylesOfRoute.some((style) =>
+        currentFilters.style.includes(style)
+      );
+
+      const citiesOfRoute = route.cities;
+      const routeCitiesMatchFilter = citiesOfRoute.some((city) => {
+        return currentFilters.city.includes(city.toLowerCase());
+      });
+
+      const routeDaysMatchFilter = route.durationDays.includes(
+        parseInt(currentFilters.days)
+      );
+
+      return (
+        routeDaysMatchFilter ||
+        routeThemesMatchFilter ||
+        routeStylesMatchFilter ||
+        routeCitiesMatchFilter
+      );
     });
-
-    const routeDaysMatchFilter = route.durationDays.includes(
-      parseInt(currentFilters.days)
-    );
-
-    return (
-      routeDaysMatchFilter ||
-      routeThemesMatchFilter ||
-      routeStylesMatchFilter ||
-      routeCitiesMatchFilter
-    );
-  });
+  }
 
   // Show only cards of the filtered routes
   const routesToShowNames = routesToShow.map((route) => route.name);
