@@ -11,34 +11,96 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
-// Layer of polylines/markers
-let markers = new L.FeatureGroup().addTo(map);
+// GLOBAL VARIABLES/STATE ---------------------------------------------------------------------------
+let currentRoute = null; // The route thats currently clicked
+let activitiesVisible = {
+  // Whether each activity layer is visible or not
+  harbor: false,
+  restaurant: false,
+  cultural: false,
+  family: false,
+  activity: false,
+};
+
+// Current filters start off empty, updateMap() runs when it gets 'set' (when filters change)
+const filterTracker = {
+  set: function (target, key, value) {
+    Reflect.set(...arguments);
+    updateMap();
+  },
+};
+
+const currentFilters = new Proxy( // Currently active filters
+  {
+    style: [],
+    theme: [],
+    city: [],
+    days: 0,
+  },
+  filterTracker
+);
+
+// Layers of polylines/markers
+let lines;
+let markers;
+// END GLOBAL VARIABLES ---------------------------------------------------------------------------
+
+function createMapLayers() {
+  lines = new L.FeatureGroup().addTo(map);
+  markers = {
+    harbor: new L.FeatureGroup().addTo(map),
+    restaurant: new L.FeatureGroup().addTo(map),
+    cultural: new L.FeatureGroup().addTo(map),
+    family: new L.FeatureGroup().addTo(map),
+    activity: new L.FeatureGroup().addTo(map),
+  };
+  Object.keys(activitiesVisible).forEach((activity) => {
+    activitiesVisible[activity] = true;
+  });
+}
+createMapLayers();
+
+function removeMapLayers() {
+  Object.keys(markers).forEach((markerLayer) => {
+    map.removeLayer(markers[markerLayer]);
+  });
+  map.removeLayer(lines);
+
+  Object.keys(activitiesVisible).forEach((activity) => {
+    activitiesVisible[activity] = false;
+  });
+}
 
 const activityButtons = document.getElementsByClassName("activityButton");
 for (const btn of activityButtons) {
   btn.addEventListener("click", toggleActivities);
 }
-let activitiesVisable = false;
 
-function toggleActivities(e) {
+function toggleActivities() {
   const activityType = this.dataset.activityType;
 
-  if (!activitiesVisable) {
-    markers = new L.FeatureGroup().addTo(map);
-    filteredLoc = locations.filter((loc) => loc.type === activityType);
+  // Cancel if there is no current route
+  if (!currentRoute) return;
+
+  // Turn activities on
+  if (!activitiesVisible[activityType]) {
+    markers[activityType] = new L.FeatureGroup().addTo(map);
+
+    filteredLoc = currentRoute.locations.filter(
+      (loc) => loc.type === activityType
+    );
 
     filteredLoc.forEach((location) => {
-      new MyCustomMarker(location.location, {
+      const marker = new MyCustomMarker(location.location, {
         title: location.title,
-      })
-        .addTo(markers)
-        .bindPopup(
-          `<h3>${location.title}</h3>
+      });
+      marker.addTo(markers[activityType]).bindPopup(
+        `<h3>${location.title}</h3>
       <p>${location.popup.description}</p>
       <a href="${location.popup.website}" target="_blank">Website</a>
       <img style="width:100%" src="${location.popup.img}" alt="${
-            location.title
-          }" />
+          location.title
+        }" />
       <h4>Faciliteiten</h4>
       <div class='facilities'>
         ${Object.entries(location.popup.facilities)
@@ -51,12 +113,15 @@ function toggleActivities(e) {
           })
           .join("")}
       </div>`
-        );
+      );
+
+      L.DomUtil.addClass(marker._icon, locationColors[location.type]);
     });
-    activitiesVisable = true;
+    activitiesVisible[activityType] = true;
   } else {
-    map.removeLayer(markers);
-    activitiesVisable = false;
+    // Turn activities off
+    map.removeLayer(markers[activityType]);
+    activitiesVisible[activityType] = false;
   }
 }
 
@@ -97,12 +162,11 @@ routeList.innerHTML = routes
 const sizeButton = document.getElementById("sizeButton");
 const sidebar = document.getElementById("sidebar");
 const filterBar = document.getElementById("filterFunction");
-sizeButton.addEventListener("click", test);
+sizeButton.addEventListener("click", resizeSidebar);
 
-function test() {
+function resizeSidebar() {
   sidebar.classList.toggle("size");
   filterBar.classList.toggle("hidden");
-  console.log(sidebar);
 }
 
 //detail pagina toggle
@@ -124,56 +188,58 @@ function detailPageFunc(event) {
   homepage.classList.toggle("hidden");
   detailpage.classList.toggle("hidden");
 
-  // Make a new layer for the markers/lines
-  markers = new L.FeatureGroup().addTo(map);
-
-  // Draw ROUTES
-  routes.forEach((route) => {
-    route.subroutes.forEach((subroute) => {
-      L.polyline(subroute.latPoints, { color: "#2257A1", weight: 4 })
-        .on("mouseover", function () {
-          this.setStyle({ color: "#f3a91a" });
-          this.openPopup();
-        })
-        .on("mouseout", function () {
-          this.setStyle({ color: "#2257A1" });
-          this.closePopup();
-        })
-        .bindPopup("Duur van de route: " + subroute.duration)
-        .addTo(markers);
-    });
-  });
-
-  // Draw MARKERS (locations)
-  locations.forEach((location) => {
-    new MyCustomMarker(location.location, {
-      title: location.title,
-    })
-      .addTo(markers)
-      .bindPopup(
-        `<h3>${location.title}</h3>
-      <p>${location.popup.description}</p>
-      <a href="${location.popup.website}" target="_blank">Website</a>
-      <img style="width:100%" src="${location.popup.img}" alt="${
-          location.title
-        }" />
-      <h4>Faciliteiten</h4>
-      <div class='facilities'>
-        ${Object.entries(location.popup.facilities)
-          .map(([key, value]) => {
-            return value.url || key === "tel"
-              ? `<a class='${key}' href='${
-                  value.url || value
-                }' target="_blank">${value.name || value}</a>`
-              : `<p class='${key}'>${value}</p>`;
-          })
-          .join("")}
-      </div>`
-      );
-  });
-
+  // The clicked route
   const routeTitle = this.querySelector("h2").textContent;
   const route = routes.find((route) => route.name === routeTitle);
+  currentRoute = route;
+
+  // Make a new layer for the markers/lines
+  createMapLayers();
+
+  // Draw ROUTES (polylines) of the route
+  route.subroutes.forEach((subroute) => {
+    L.polyline(subroute.latPoints, { color: "#2257A1", weight: 4 })
+      .on("mouseover", function () {
+        this.setStyle({ color: "#f3a91a" });
+        this.openPopup();
+      })
+      .on("mouseout", function () {
+        this.setStyle({ color: "#2257A1" });
+        this.closePopup();
+      })
+      .bindPopup("Duur van de route: " + subroute.duration)
+      .addTo(lines);
+  });
+
+  // Draw ALL MARKERS of the route (locations)
+  route.locations.forEach((location) => {
+    const marker = new MyCustomMarker(location.location, {
+      title: location.title,
+    });
+
+    marker.addTo(markers[location.type]).bindPopup(
+      `<h3>${location.title}</h3>
+        <p>${location.popup.description}</p>
+        <a href="${location.popup.website}" target="_blank">Website</a>
+        <img style="width:100%" src="${location.popup.img}" alt="${
+        location.title
+      }" />
+        <h4>Faciliteiten</h4>
+        <div class='facilities'>
+          ${Object.entries(location.popup.facilities)
+            .map(([key, value]) => {
+              return value.url || key === "tel"
+                ? `<a class='${key}' href='${
+                    value.url || value
+                  }' target="_blank">${value.name || value}</a>`
+                : `<p class='${key}'>${value}</p>`;
+            })
+            .join("")}
+        </div>`
+    );
+
+    L.DomUtil.addClass(marker._icon, locationColors[location.type]);
+  });
 
   introRoute.innerHTML = `
      <h2 class="routeSectionTitle">  ${route.name}</h2>
@@ -244,26 +310,8 @@ function detailPageFunc(event) {
 function backToHome() {
   homepage.classList.toggle("hidden");
   detailpage.classList.toggle("hidden");
-  map.removeLayer(markers);
+  removeMapLayers();
 }
-
-// Current filters start off empty, updateMap() runs when it gets 'set' (when filters change)
-const filterTracker = {
-  set: function (target, key, value) {
-    Reflect.set(...arguments);
-    updateMap();
-  },
-};
-
-const currentFilters = new Proxy(
-  {
-    style: [],
-    theme: [],
-    city: [],
-    days: 0,
-  },
-  filterTracker
-);
 
 // Listen for filter changes
 const filterGroups = document.querySelectorAll("#filterFunction fieldset");

@@ -1,7 +1,10 @@
 // Credits to: http://jsfiddle.net/sowelie/3JbNY/
 var MyCustomMarker = L.Marker.extend({
   options: {
-    icon: L.divIcon({ className: "customIcon", iconSize: [10, 10] }),
+    icon: L.divIcon({
+      className: `customIcon`,
+      iconSize: [12, 12],
+    }),
   },
   bindPopup: function (htmlContent, options) {
     // if (options && options.showOnMouseOver) {

@@ -43,18 +43,13 @@ body {
 }
 
 .customIcon {
-  width: 10px;
-  height: 10px;
+  width: 16px;
+  height: 16px;
   position: absolute;
   top: 0;
   z-index: -1;
   background: #ff5c1b;
-  border: 1px solid #c53800;
   border-radius: 10px;
-}
-
-.customIcon.active {
-  border: 2px solid #7c0404;
 }
 
 /* Reset popup styling */
@@ -336,11 +331,10 @@ h1 {
 #sidebar.size #routeList {
   padding: 0;
   flex-direction: row;
-
 }
 
 #sidebar.size .routeListItem {
-  width: calc(33.333333% - 18*2px);
+  width: calc(33.333333% - 18 * 2px);
   width: 30%;
 }
 
