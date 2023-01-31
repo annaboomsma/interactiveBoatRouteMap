@@ -42,23 +42,6 @@ body {
   flex-grow: 1;
 }
 
-.customPopup {
-  position: absolute;
-  z-index: 999;
-  right: 0;
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 12px;
-  width: 200px;
-  cursor: default;
-  transform: translateY(-50%);
-  margin-left: 10px;
-}
-
-.customPopup.hidden {
-  display: none;
-}
-
 .customIcon {
   width: 10px;
   height: 10px;
@@ -263,24 +246,50 @@ h1 {
   padding: 0 10px;
   width: 190px;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .optionsDropdown {
+  position: absolute;
+  top: 100%;
   margin: 5px 0;
-  padding: 10px;
   background-color: white;
   border-radius: 8px;
-  width: 190px;
-  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s linear;
+}
+
+.optionsWrapper {
+  padding: 10px;
+}
+
+.dropdownFilter.open .optionsDropdown {
+  max-height: 500px;
+}
+
+.dropdownFilter.open i {
+  transform: rotate(180deg);
 }
 
 .filterInput {
-  padding: 10px;
+  padding-left: 10px;
   border-radius: 8px;
+  display: flex;
 }
 
 .filterInput label {
+  padding: 10px;
   padding-left: 10px;
+  cursor: pointer;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.filterInput input {
+  cursor: pointer;
 }
 
 .filterInput:hover {
@@ -293,6 +302,7 @@ h1 {
 }
 
 .dropdownFilter {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
