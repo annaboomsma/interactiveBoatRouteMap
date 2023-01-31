@@ -336,11 +336,12 @@ h1 {
 #sidebar.size #routeList {
   padding: 0;
   flex-direction: row;
+
 }
 
 #sidebar.size .routeListItem {
-  flex-basis: 30%;
-  flex-grow: 1;
+  width: calc(33.333333% - 18*2px);
+  width: 30%;
 }
 
 .routeListItem {

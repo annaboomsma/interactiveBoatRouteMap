@@ -14,6 +14,49 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // Layer of polylines/markers
 let markers = new L.FeatureGroup().addTo(map);
 
+const activityButton = document.querySelector('.activityButton')
+activityButton.addEventListener("click", toggleActivities)
+let activitiesVisable = false;
+
+function toggleActivities(){
+  if(!activitiesVisable){
+    markers = new L.FeatureGroup().addTo(map);
+    locations.forEach((location) => {
+      new MyCustomMarker(location.location, {
+        title: location.title,
+      })
+        .addTo(markers)
+        .bindPopup(
+          `<h3>${location.title}</h3>
+      <p>${location.popup.description}</p>
+      <a href="${location.popup.website}" target="_blank">Website</a>
+      <img style="width:100%" src="${location.popup.img}" alt="${
+            location.title
+          }" />
+      <h4>Faciliteiten</h4>
+      <div class='facilities'>
+        ${Object.entries(location.popup.facilities)
+                .map(([key, value]) => {
+                  return value.url || key === "tel"
+                    ? `<a class='${key}' href='${
+                      value.url || value
+                    }' target="_blank">${value.name || value}</a>`
+                    : `<p class='${key}'>${value}</p>`;
+                })
+                .join("")}
+      </div>`
+        );
+    });
+    activitiesVisable = true;
+  }else{
+    map.removeLayer(markers);
+    activitiesVisable = false;
+  }
+
+}
+
+
+
 //dynamic routelist
 const routeList = document.querySelector("#routeList");
 
