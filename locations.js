@@ -73,3 +73,5 @@ const somePlace = {
     },
   },
 };
+
+const locations = [varenSil, varingKarin, somePlace];

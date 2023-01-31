@@ -69,6 +69,7 @@ function removeMapLayers() {
   Object.keys(activitiesVisible).forEach((activity) => {
     activitiesVisible[activity] = false;
   });
+  currentRoute = null;
 }
 
 const activityButtons = document.getElementsByClassName("activityButton");
@@ -79,9 +80,13 @@ for (const btn of activityButtons) {
 function toggleActivities() {
   const activityType = this.dataset.activityType;
 
-  // Cancel if there is no current route
-  if (!currentRoute) return;
+  // If there is no active route clicked, filter/show all locations
+  if (!currentRoute) {
+    // TODO: Filter/show all locations
+    return;
+  }
 
+  // If there is a current route, filter/show only the activities of the current route
   // Turn activities on
   if (!activitiesVisible[activityType]) {
     markers[activityType] = new L.FeatureGroup().addTo(map);
