@@ -84,14 +84,16 @@ function detailPageFunc(event) {
   // Draw ROUTES
   routes.forEach((route) => {
     route.subroutes.forEach((subroute) => {
-      L.polyline(subroute.latPoints, { color: "#0041cc" })
+      L.polyline(subroute.latPoints, { color: "#2257A1", weight: 4 })
         .on("mouseover", function () {
+          this.setStyle({ color: "#f3a91a" });
           this.openPopup();
         })
         .on("mouseout", function () {
+          this.setStyle({ color: "#2257A1" });
           this.closePopup();
         })
-        .bindPopup("Duur van de route: ..." + subroute.duration)
+        .bindPopup("Duur van de route: " + subroute.duration)
         .addTo(markers);
     });
   });

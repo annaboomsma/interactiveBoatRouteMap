@@ -159,7 +159,6 @@ const leeuwardenFraneker = {
   ],
 };
 
-
 const franekerSneek = {
   duration: "2.5 uur",
   latPoints: [
@@ -230,7 +229,7 @@ const franekerSneek = {
   ],
 };
 const sneekLunegat = {
-  duration: "1 uur",
+  duration: "8 uur",
   latPoints: [
     [53.31778955962282, 6.156431225640618],
     [53.30844165925055, 6.152107836263533],
