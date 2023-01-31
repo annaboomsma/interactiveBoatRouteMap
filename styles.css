@@ -323,10 +323,24 @@ h1 {
 }
 
 #routeList {
+  padding: 0 18px;
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+#sidebar.size #routeList {
+  padding: 0;
+  flex-direction: row;
+}
+
+#sidebar.size .routeListItem {
+  flex-basis: 30%;
+  flex-grow: 1;
 }
 
 .routeListItem {
@@ -334,13 +348,11 @@ h1 {
   flex-wrap: wrap;
   height: 197px;
   cursor: pointer;
-  width: 270px;
+  width: 100%;
   border-radius: 8px;
-  /*background-image: url("images/Restaurant-it-posthus-makkum-1280x620.jpeg");*/
   background-size: cover;
   background-position: center;
   justify-content: space-between;
-  margin: 10px 0;
   box-shadow: 4px 4px 6px 0 rgba(30, 30, 30, 0.21);
 }
 
@@ -393,7 +405,7 @@ h1 {
 
 .detailpage {
   box-sizing: border-box;
-  padding: 10px;
+  padding: 18px;
   background-color: white;
   overflow-y: auto;
   height: 100%;
