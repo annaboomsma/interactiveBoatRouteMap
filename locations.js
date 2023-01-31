@@ -1,6 +1,7 @@
 const locations = [
   {
     title: "Varen met Sil",
+    type: "activity",
     location: [53.31791187972894, 6.169128705034792],
     popup: {
       description:
@@ -21,6 +22,7 @@ const locations = [
   },
   {
     title: "Varing met Karin",
+    type: "harbor",
     location: [53.26791187972894, 6.069128705034792],
     popup: {
       description:

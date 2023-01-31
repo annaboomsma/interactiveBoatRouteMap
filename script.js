@@ -14,14 +14,20 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // Layer of polylines/markers
 let markers = new L.FeatureGroup().addTo(map);
 
-const activityButton = document.querySelector('.activityButton')
-activityButton.addEventListener("click", toggleActivities)
+const activityButtons = document.getElementsByClassName("activityButton");
+for (const btn of activityButtons) {
+  btn.addEventListener("click", toggleActivities);
+}
 let activitiesVisable = false;
 
-function toggleActivities(){
-  if(!activitiesVisable){
+function toggleActivities(e) {
+  const activityType = this.dataset.activityType;
+
+  if (!activitiesVisable) {
     markers = new L.FeatureGroup().addTo(map);
-    locations.forEach((location) => {
+    filteredLoc = locations.filter((loc) => loc.type === activityType);
+
+    filteredLoc.forEach((location) => {
       new MyCustomMarker(location.location, {
         title: location.title,
       })
@@ -36,26 +42,23 @@ function toggleActivities(){
       <h4>Faciliteiten</h4>
       <div class='facilities'>
         ${Object.entries(location.popup.facilities)
-                .map(([key, value]) => {
-                  return value.url || key === "tel"
-                    ? `<a class='${key}' href='${
-                      value.url || value
-                    }' target="_blank">${value.name || value}</a>`
-                    : `<p class='${key}'>${value}</p>`;
-                })
-                .join("")}
+          .map(([key, value]) => {
+            return value.url || key === "tel"
+              ? `<a class='${key}' href='${
+                  value.url || value
+                }' target="_blank">${value.name || value}</a>`
+              : `<p class='${key}'>${value}</p>`;
+          })
+          .join("")}
       </div>`
         );
     });
     activitiesVisable = true;
-  }else{
+  } else {
     map.removeLayer(markers);
     activitiesVisable = false;
   }
-
 }
-
-
 
 //dynamic routelist
 const routeList = document.querySelector("#routeList");
