@@ -323,7 +323,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   height: 197px;
-
+  cursor: pointer;
   width: 270px;
   border-radius: 8px;
   /*background-image: url("images/Restaurant-it-posthus-makkum-1280x620.jpeg");*/
@@ -393,13 +393,14 @@ h1 {
   width: 100%;
   border-radius: 8px;
 }
-.exitButton {
+j .exitButton {
   height: 40px;
   width: 40px;
   border: none;
   border-radius: 8px;
   background-color: #f3da5b;
   box-shadow: 4px 4px 6px 0 rgba(30, 30, 30, 0.21);
+  cursor: pointer;
 }
 
 .xStyling {
