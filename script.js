@@ -42,6 +42,33 @@ locations.forEach((location) => {
     );
 });
 
+
+//dynamic routelist
+const routeList = document.querySelector('#routeList')
+
+
+  routeList.innerHTML = routes.map(route => {return `
+<div data-name="${route.name}" class="routeListItem" style='background-image: url("${route.img}")'>
+              <ul class="routeAttributes">
+                <li>
+                  <i class="fa-regular fa-clock"></i>
+                  ${route.durationDays[0]} tot ${route.durationDays.at(-1)} dagen
+                </li>
+                <li>
+                  <i class="fa-solid fa-chart-line"></i>
+                  ${Object.values(route.style)[0]}
+                </li>
+                <li>
+                  <i class="fa-regular fa-eye"></i>
+                  ${Object.values(route.theme).map(theme => theme+" ").join("")}
+                </li>
+              </ul>
+              <h2 class="routeTitle">${route.name}</h2>
+            </div>  
+  ` }).join("")
+
+
+
 //sidebar size change
 const sizeButton = document.getElementById("sizeButton");
 const sidebar = document.getElementById("sidebar");
@@ -84,6 +111,7 @@ function detailPageFunc(event) {
         })
         .bindPopup("Duur van de route: ..." + subroute.duration)
         .addTo(map);
+
     });
   });
 
@@ -100,11 +128,11 @@ function detailPageFunc(event) {
               </li>
               <li>
                 <i class="fa-solid fa-chart-line"></i>
-                ${route.style}
+                ${Object.values(route.style)[0]}
               </li>
               <li>
                 <i class="fa-regular fa-eye"></i>
-                ${route.theme[0]}
+                 ${Object.values(route.theme).map(theme => theme+" ").join("")}
               </li>
      </ul>
      <img src="${route.img}" alt="${route.name}" />        
@@ -134,6 +162,7 @@ function detailPageFunc(event) {
               )
               .join("")}
          </ol>
+         <a href="https://varenmetsil.nl/hoe-moet-ik-een-boot-aanleggen/">Hoe moet ik aanmeren?</a>
       </div>
       <div class="tips">
               <h4>Leuk om te doen</h4>
@@ -157,6 +186,7 @@ function detailPageFunc(event) {
 function backToHome() {
   homepage.classList.toggle("hidden");
   detailpage.classList.toggle("hidden");
+  // map.removeLayer(markers);
 }
 
 // Current filters start off empty, updateMap() runs when it gets 'set' (when filters change)
@@ -277,4 +307,4 @@ function updateMap() {
 
 // Als je weer teruggaat naar de 'main' page:
 // // Delete old layer of polylines/markers
-// map.removeLayer(markers);
+

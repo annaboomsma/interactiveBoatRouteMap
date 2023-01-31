@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
 }
 
 body {
@@ -201,6 +201,11 @@ body {
   display: none;
 }
 
+.homepage{
+  height: 100%;
+  overflow-y: auto;
+}
+
 h1 {
   color: #294a69;
   font-family: "Kaushan Script", cursive;
@@ -318,15 +323,20 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   height: 197px;
-  background-color: red;
+
   width: 270px;
   border-radius: 8px;
-  background-image: url("images/Restaurant-it-posthus-makkum-1280x620.jpeg");
+  /*background-image: url("images/Restaurant-it-posthus-makkum-1280x620.jpeg");*/
   background-size: cover;
   background-position: center;
   justify-content: space-between;
   margin: 10px 0;
   box-shadow: 4px 4px 6px 0 rgba(30, 30, 30, 0.21);
+}
+
+.routeListItem i {
+  color: #f3da5b;
+
 }
 
 .routeTitle {
@@ -432,15 +442,17 @@ h1 {
 .detailpage p {
   font-family: "Public Sans", sans-serif;
   font-size: 15px;
+  margin-bottom: 10px;
 }
 
 /*Route section styling*/
 
 .routeSection {
-  padding-top: 50px;
+
 }
 
 .routeSectionTitle {
+  margin-top: 30px;
   font-family: "Kaushan Script", cursive;
   font-size: 23px;
   color: #f3da5b;
@@ -458,6 +470,7 @@ h1 {
   font-weight: bold;
   color: #294a69;
   font-size: 17px;
+  margin: 10px 0 5px 0;
 }
 
 .routeSection ol {
