@@ -14,45 +14,21 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // Layer of polylines/markers
 let markers = new L.FeatureGroup().addTo(map);
 
-// MARKERS (loop over locations)
-locations.forEach((location) => {
-  new MyCustomMarker(location.location, {
-    title: location.title,
-  })
-    .addTo(map)
-    .bindPopup(
-      `<h3>${location.title}</h3>
-      <p>${location.popup.description}</p>
-      <a href="${location.popup.website}" target="_blank">Website</a>
-      <img style="width:100%" src="${location.popup.img}" alt="${
-        location.title
-      }" />
-      <h4>Faciliteiten</h4>
-      <div class='facilities'>
-        ${Object.entries(location.popup.facilities)
-          .map(([key, value]) => {
-            return value.url || key === "tel"
-              ? `<a class='${key}' href='${
-                  value.url || value
-                }' target="_blank">${value.name || value}</a>`
-              : `<p class='${key}'>${value}</p>`;
-          })
-          .join("")}
-      </div>`
-    );
-});
-
-
 //dynamic routelist
-const routeList = document.querySelector('#routeList')
+const routeList = document.querySelector("#routeList");
 
-
-  routeList.innerHTML = routes.map(route => {return `
-<div data-name="${route.name}" class="routeListItem" style='background-image: url("${route.img}")'>
+routeList.innerHTML = routes
+  .map((route) => {
+    return `
+<div data-name="${
+      route.name
+    }" class="routeListItem" style='background-image: url("${route.img}")'>
               <ul class="routeAttributes">
                 <li>
                   <i class="fa-regular fa-clock"></i>
-                  ${route.durationDays[0]} tot ${route.durationDays.at(-1)} dagen
+                  ${route.durationDays[0]} tot ${route.durationDays.at(
+      -1
+    )} dagen
                 </li>
                 <li>
                   <i class="fa-solid fa-chart-line"></i>
@@ -60,14 +36,16 @@ const routeList = document.querySelector('#routeList')
                 </li>
                 <li>
                   <i class="fa-regular fa-eye"></i>
-                  ${Object.values(route.theme).map(theme => theme+" ").join("")}
+                  ${Object.values(route.theme)
+                    .map((theme) => theme + " ")
+                    .join("")}
                 </li>
               </ul>
               <h2 class="routeTitle">${route.name}</h2>
             </div>  
-  ` }).join("")
-
-
+  `;
+  })
+  .join("");
 
 //sidebar size change
 const sizeButton = document.getElementById("sizeButton");
@@ -100,6 +78,10 @@ function detailPageFunc(event) {
   homepage.classList.toggle("hidden");
   detailpage.classList.toggle("hidden");
 
+  // Make a new layer for the markers/lines
+  markers = new L.FeatureGroup().addTo(map);
+
+  // Draw ROUTES
   routes.forEach((route) => {
     route.subroutes.forEach((subroute) => {
       L.polyline(subroute.latPoints, { color: "#0041cc" })
@@ -110,13 +92,39 @@ function detailPageFunc(event) {
           this.closePopup();
         })
         .bindPopup("Duur van de route: ..." + subroute.duration)
-        .addTo(map);
-
+        .addTo(markers);
     });
   });
 
-  const routeTitle = this.querySelector("h2").textContent;
+  // Draw MARKERS (locations)
+  locations.forEach((location) => {
+    new MyCustomMarker(location.location, {
+      title: location.title,
+    })
+      .addTo(markers)
+      .bindPopup(
+        `<h3>${location.title}</h3>
+      <p>${location.popup.description}</p>
+      <a href="${location.popup.website}" target="_blank">Website</a>
+      <img style="width:100%" src="${location.popup.img}" alt="${
+          location.title
+        }" />
+      <h4>Faciliteiten</h4>
+      <div class='facilities'>
+        ${Object.entries(location.popup.facilities)
+          .map(([key, value]) => {
+            return value.url || key === "tel"
+              ? `<a class='${key}' href='${
+                  value.url || value
+                }' target="_blank">${value.name || value}</a>`
+              : `<p class='${key}'>${value}</p>`;
+          })
+          .join("")}
+      </div>`
+      );
+  });
 
+  const routeTitle = this.querySelector("h2").textContent;
   const route = routes.find((route) => route.name === routeTitle);
 
   introRoute.innerHTML = `
@@ -132,7 +140,9 @@ function detailPageFunc(event) {
               </li>
               <li>
                 <i class="fa-regular fa-eye"></i>
-                 ${Object.values(route.theme).map(theme => theme+" ").join("")}
+                 ${Object.values(route.theme)
+                   .map((theme) => theme + " ")
+                   .join("")}
               </li>
      </ul>
      <img src="${route.img}" alt="${route.name}" />        
@@ -186,7 +196,7 @@ function detailPageFunc(event) {
 function backToHome() {
   homepage.classList.toggle("hidden");
   detailpage.classList.toggle("hidden");
-  // map.removeLayer(markers);
+  map.removeLayer(markers);
 }
 
 // Current filters start off empty, updateMap() runs when it gets 'set' (when filters change)
@@ -285,26 +295,3 @@ function updateMap() {
   });
   exitButton.addEventListener("click", backToHome);
 }
-
-// Als je op een detail page klikt:
-// // New layer of polylines/markers
-// markers = new L.FeatureGroup().addTo(map);
-
-// // Add the new filtered routes to new layer
-// routesToShow.forEach((route) => {
-//   route.subroutes.forEach((subroute) => {
-//     L.polyline(subroute.latPoints, { color: "#0041cc" })
-//       .on("mouseover", function () {
-//         this.openPopup();
-//       })
-//       .on("mouseout", function () {
-//         this.closePopup();
-//       })
-//       .bindPopup("Duur van de route: ..." + subroute.duration)
-//       .addTo(markers);
-//   });
-// });
-
-// Als je weer teruggaat naar de 'main' page:
-// // Delete old layer of polylines/markers
-
