@@ -14,34 +14,6 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // Layer of polylines/markers
 let markers = new L.FeatureGroup().addTo(map);
 
-// MARKERS (loop over locations)
-locations.forEach((location) => {
-  new MyCustomMarker(location.location, {
-    title: location.title,
-  })
-    .addTo(map)
-    .bindPopup(
-      `<h3>${location.title}</h3>
-      <p>${location.popup.description}</p>
-      <a href="${location.popup.website}" target="_blank">Website</a>
-      <img style="width:100%" src="${location.popup.img}" alt="${
-        location.title
-      }" />
-      <h4>Faciliteiten</h4>
-      <div class='facilities'>
-        ${Object.entries(location.popup.facilities)
-          .map(([key, value]) => {
-            return value.url || key === "tel"
-              ? `<a class='${key}' href='${
-                  value.url || value
-                }' target="_blank">${value.name || value}</a>`
-              : `<p class='${key}'>${value}</p>`;
-          })
-          .join("")}
-      </div>`
-    );
-});
-
 //dynamic routelist
 const routeList = document.querySelector("#routeList");
 
@@ -109,6 +81,7 @@ function detailPageFunc(event) {
   // Make a new layer for the markers/lines
   markers = new L.FeatureGroup().addTo(map);
 
+  // Draw ROUTES
   routes.forEach((route) => {
     route.subroutes.forEach((subroute) => {
       L.polyline(subroute.latPoints, { color: "#0041cc" })
@@ -123,8 +96,35 @@ function detailPageFunc(event) {
     });
   });
 
-  const routeTitle = this.querySelector("h2").textContent;
+  // Draw MARKERS (locations)
+  locations.forEach((location) => {
+    new MyCustomMarker(location.location, {
+      title: location.title,
+    })
+      .addTo(markers)
+      .bindPopup(
+        `<h3>${location.title}</h3>
+      <p>${location.popup.description}</p>
+      <a href="${location.popup.website}" target="_blank">Website</a>
+      <img style="width:100%" src="${location.popup.img}" alt="${
+          location.title
+        }" />
+      <h4>Faciliteiten</h4>
+      <div class='facilities'>
+        ${Object.entries(location.popup.facilities)
+          .map(([key, value]) => {
+            return value.url || key === "tel"
+              ? `<a class='${key}' href='${
+                  value.url || value
+                }' target="_blank">${value.name || value}</a>`
+              : `<p class='${key}'>${value}</p>`;
+          })
+          .join("")}
+      </div>`
+      );
+  });
 
+  const routeTitle = this.querySelector("h2").textContent;
   const route = routes.find((route) => route.name === routeTitle);
 
   introRoute.innerHTML = `
